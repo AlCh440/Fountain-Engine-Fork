@@ -257,10 +257,10 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(ProjectDir)/libs;$(ProjectDir)/libs/SDL/include</LibraryPath>
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir);$(ProjectDir)\libs\SDL\include;$(ProjectDir)\libs;$(ProjectDir)\libs\assimp;$(ProjectDir)\libs\DevIL\include</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(ProjectDir)/libs;$(ProjectDir)/libs/SDL/include;C:\GitHub\Fountain-Engine-Fork\src\modules\EngineUI\DearImGUI</LibraryPath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir);$(ProjectDir)\libs\SDL\include;$(ProjectDir)\libs;$(ProjectDir)\libs\assimp;$(ProjectDir)\libs\DevIL\include;C:\GitHub\Fountain-Engine-Fork\src\modules\EngineUI\DearImGUI</IncludePath>
     <ExternalIncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)/src/modules/EngineUI/DearImGUI;</ExternalIncludePath>
-    <SourcePath>$(VC_SourcePath);$(ProjectDir)/src/modules/EngineUI/DearImGUI</SourcePath>
+    <SourcePath>$(VC_SourcePath);$(ProjectDir)/src/modules/EngineUI/DearImGUI;C:\GitHub\Fountain-Engine-Fork\src\modules\EngineUI\DearImGUI</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir);$(ProjectDir)\libs\SDL\include;$(ProjectDir)\libs;$(ProjectDir)\libs\assimp;$(ProjectDir)\libs\DevIL\include</IncludePath>
