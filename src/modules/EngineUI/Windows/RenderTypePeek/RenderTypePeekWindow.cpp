@@ -14,6 +14,8 @@ void RenderPeekWindow::Update()
 	if (ImGui::CollapsingHeader("Meshes")) {
 
 	}
+	int win_w, win_h;
+	SDL_GetWindowSize(App->window->window, &win_w, &win_h);
 	if (ImGui::CollapsingHeader("Textures")) {
 		ImGui::SliderInt("Texture Show Width", &t_w, 0, 4000);
 		static int select_img = 0;

@@ -8,11 +8,11 @@
 class UI_Item;
 class MenuBar;
 
-class ModuleEngineUI : public Module
+class Tools : public Module
 {
 public:
-	ModuleEngineUI();
-	~ModuleEngineUI();
+	Tools();
+	~Tools();
 
 	bool Start();
 	update_status Update(float dt);

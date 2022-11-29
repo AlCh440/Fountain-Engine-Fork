@@ -7,18 +7,18 @@
 #include "MenuBar/MenuBar.h"
 #include "Windows/WindowsIncludeAll.h"
 
-ModuleEngineUI::ModuleEngineUI() : Module("editor_ui", true)
+Tools::Tools() : Module("editor_ui", true)
 {
     menu_bar = new MenuBar();
     EngineUI_RegisterItem((UI_Item*)new SceneView());
     EngineUI_RegisterItem((UI_Item*)new RenderPeekWindow());
     EngineUI_RegisterItem((UI_Item*)new ConfigWindow());
-    EngineUI_RegisterItem((UI_Item*)new DemoWindow());
+    //EngineUI_RegisterItem((UI_Item*)new DemoWindow());
     EngineUI_RegisterItem((UI_Item*)new EntityHierarchyWindow());
     EngineUI_RegisterItem((UI_Item*)new ComponentInspector());
 }
 
-ModuleEngineUI::~ModuleEngineUI()
+Tools::~Tools()
 {
 }
 
@@ -29,7 +29,8 @@ void StartImGUI(Application* App) {
     ImGuiIO& io = ImGui::GetIO(); (void)io;
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;       // Enable Keyboard Controls
     //io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
-    io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;           // Enable Docking
+    io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;  
+    ImGuiStyle& style = ImGui::GetStyle();// Enable Docking
     //io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;         // Enable Multi-Viewport / Platform Windows
     //io.ConfigViewportsNoAutoMerge = true;
     //io.ConfigViewportsNoTaskBarIcon = true;
@@ -37,9 +38,11 @@ void StartImGUI(Application* App) {
     // Setup Dear ImGui style
     ImGui::StyleColorsDark();
     //ImGui::StyleColorsLight();
+    style.GrabRounding = 3.0f;
+    style.FrameRounding = 3.0f;
 
     // When viewports are enabled we tweak WindowRounding/WindowBg so platform windows can look identical to regular ones.
-    ImGuiStyle& style = ImGui::GetStyle();
+    //ImGuiStyle& style = ImGui::GetStyle();
     if (io.ConfigFlags)
     {
         style.WindowRounding = 0.0f;
@@ -51,9 +54,9 @@ void StartImGUI(Application* App) {
     ImGui_ImplOpenGL3_Init(App->renderer3D->glsl_version);
 }
 
-#include "Windows/DemoWindow.h"
+//#include "Windows/DemoWindow.h"
 
-bool ModuleEngineUI::Start()
+bool Tools::Start()
 {	
     StartImGUI(App);
 
@@ -66,7 +69,7 @@ bool ModuleEngineUI::Start()
 	return false;
 }
 
-update_status ModuleEngineUI::Update(float dt)
+update_status Tools::Update(float dt)
 {
     update_status ret = UPDATE_CONTINUE;
     ImGuiIO& io = ImGui::GetIO();
@@ -92,7 +95,7 @@ update_status ModuleEngineUI::Update(float dt)
 	return ret;
 }
 
-update_status ModuleEngineUI::PostUpdate(float dt)
+update_status Tools::PostUpdate(float dt)
 {
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
     glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
@@ -117,7 +120,7 @@ update_status ModuleEngineUI::PostUpdate(float dt)
     return update_status::UPDATE_CONTINUE;
 }
 
-bool ModuleEngineUI::CleanUp()
+bool Tools::CleanUp()
 {
     ImGui_ImplOpenGL3_Shutdown();
     ImGui_ImplSDL2_Shutdown();
@@ -136,7 +139,7 @@ bool ModuleEngineUI::CleanUp()
 	return false;
 }
 
-UI_Item* ModuleEngineUI::GetItem(const char* name) {
+UI_Item* Tools::GetItem(const char* name) {
     if (!strcmp(name, "")) return nullptr;
 
     for (int i = 0; i < items.size(); ++i)
@@ -145,13 +148,13 @@ UI_Item* ModuleEngineUI::GetItem(const char* name) {
     return nullptr;
 }
 
-bool ModuleEngineUI::GetEvent(SDL_Event* e)
+bool Tools::GetEvent(SDL_Event* e)
 {
     ImGui_ImplSDL2_ProcessEvent(e);
     return true;
 }
 
-void ModuleEngineUI::EngineUI_RegisterItem(UI_Item* item)
+void Tools::EngineUI_RegisterItem(UI_Item* item)
 {
     items.push_back(item);
     item->id = items.size() - 1;
@@ -160,7 +163,7 @@ void ModuleEngineUI::EngineUI_RegisterItem(UI_Item* item)
     menu_bar->RegisterMenuItem(&item->active, item->name.c_str(), item->submenu.c_str());
 }
 
-void ModuleEngineUI::EngineUI_UpdateActives() {
+void Tools::EngineUI_UpdateActives() {
     active_items.clear();
     uint32_t s = items.size();
     for (uint32_t i = 0; i < s; ++i)

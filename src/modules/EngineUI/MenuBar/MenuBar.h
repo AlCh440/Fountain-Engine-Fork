@@ -27,6 +27,7 @@ public:
     std::vector<MenuItem> variable_ui;
 
     bool registerable = false;
+    bool activateAbout = false;
     MenuBar() : UI_Item("Menu Bar") { active = true; };
 
     void Init() final;
@@ -35,6 +36,10 @@ public:
     
 
     void Update() final;
+
+    void MenuBar::SaveFile();
+    void MenuBar::LoadScene();
+    void MenuBar::ImportFile();
 
     void CleanUp() final {}
 

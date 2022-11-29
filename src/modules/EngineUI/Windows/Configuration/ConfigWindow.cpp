@@ -43,14 +43,47 @@ bool fullscreen, resizable, borderless, full_desktop;
 
 void ConfigWindow::WindowOptions()
 {
-	bool ret = false;
+	/*bool ret = false;
 	ImGui::Checkbox("Fullscreen", &App->window->fullscreen); 
 	ImGui::Checkbox("Borderless", &App->window->borderless);
 	ImGui::Checkbox("Resizable", &App->window->resizable);
 	ImGui::Checkbox("Full Desktop", &App->window->full_desktop);
 
 	ImGui::SliderInt("Width", &App->window->w, 100, 1920);
-	ImGui::SliderInt("Height", &App->window->h, 100, 1080);
+	ImGui::SliderInt("Height", &App->window->h, 100, 1080);*/
+	bool screen_modified = false;
+	bool ret = false;
+	int win_w, win_h;
+	SDL_GetWindowSize(App->window->window, &win_w, &win_h);
+
+	if (ImGui::Checkbox("Fullscreen", &App->window->fullscreen))
+	{
+		App->window->SetFullscreen(App->window->fullscreen);
+	}
+
+	if (ImGui::Checkbox("Borderless", &App->window->borderless))
+		App->window->SetBorderless();
+
+	if (ImGui::Checkbox("Resizable", &App->window->resizable))
+		App->window->SetResizable();
+
+	if (ImGui::Checkbox("Full Desktop", &App->window->full_desktop))
+	{
+		App->window->SetFullDesktop(App->window->full_desktop);
+	}
+
+	if (ImGui::SliderFloat("Brightness", &App->window->brightness, 0.0f, 1.0f))
+		App->window->SetBrightness();
+
+	if (ImGui::SliderInt("Width", &win_w, 400, App->window->screen_size_w - 1) && !App->window->fullscreen && !App->window->full_desktop)
+	{
+		SDL_SetWindowSize(App->window->window, App->window->window_w, App->window->window_h);
+	}
+
+	if (ImGui::SliderInt("Height", &win_h, 400, App->window->screen_size_h - 1) && !App->window->fullscreen && !App->window->full_desktop)
+	{
+		SDL_SetWindowSize(App->window->window, App->window->window_w, App->window->window_h);
+	}
 }
 
 
@@ -116,6 +149,7 @@ const char* polymode_strings[] = {
 uint32_t polymode_vals[] = {
 	GL_FRONT_AND_BACK, GL_FRONT_FACE
 };
+
 constexpr int polymode_arrsize = sizeof(polymode_vals) / sizeof(uint32_t);
 int curr_polymode = 0;
 
@@ -125,6 +159,7 @@ const char* polyfill_strings[] = {
 uint32_t polyfill_vals[] = {
 	GL_FILL, GL_LINE, GL_POINT,
 };
+
 constexpr int polyfill_arrsize = sizeof(polyfill_vals) / sizeof(uint32_t);
 int curr_polyfill = 0;
 
