@@ -1,5 +1,9 @@
 #include "../Converters.h"
+#include "AABBComponent.h"
 #include <src/modules/Render/RendererTypes.h>
+
+// Components for the exporters, not Converters
+#include <src/modules/ECS/ComponentsIncludeAll.h>
 
 void ConvertAssimpMesh(const aiMesh* aimesh, NIMesh& mesh) {
 	mesh.vertices.resize(aimesh->mNumVertices);
@@ -31,6 +35,16 @@ void ConvertAssimpMesh(const aiMesh* aimesh, NIMesh& mesh) {
 	}
 
 	// TODO: Base Color / Bounding Box / 
+
+	
+	
+	Entity* entityAux = App->ecs->AddEntity(UINT64_MAX);
+	
+	AABBComponent* component = entityAux->AddComponent<AABBComponent>();
+	memcpy(entityAux->name, "aabb", sizeof(char) * 4);
+	AABB* aux = new AABB();
+	aux->SetFrom(mesh.vertices.data(), mesh.vertices.size());
+	component->aabb = aux;
 }
 
 

@@ -1,0 +1,25 @@
+#pragma once
+
+#include "src/modules/ECS/ModuleECS.h"
+//#include <src/helpers/MathGeoLib/MathGeoLib.h>
+#include <src/Application.h>
+
+struct AABBComponent : public Component {
+	constexpr static ComponentTypes type = CT_AABB;
+	AABBComponent() { id.ctype = CT_AABB; id.id = PCGRand(); }
+
+	AABB* aabb;
+	
+	void Init() override {
+
+	};
+
+	void Start() override {
+
+	};
+
+	void PostUpdate(float dt) override {
+		aabb->Draw();
+	};
+
+};

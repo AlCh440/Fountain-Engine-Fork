@@ -48,8 +48,13 @@ void TraverseAiNodes(const aiScene* scene, const char* parent_path, const aiNode
 
 		ConvertAssimpMaterial(scene->mMaterials[aimesh->mMaterialIndex], parent_path, cmesh->mat_data);
 		cmesh->mat_use = cmesh->mat_data.LoadToGPU();
+
+
+	
 	}
 	const uint64_t eid = get->id;
+
+	
 	for (int i = 0; i < node->mNumChildren; ++i)
 		TraverseAiNodes(scene, parent_path, node->mChildren[i], get);
 }
@@ -64,5 +69,7 @@ void ConvertAssimpScene(const TempIfStream& file) {
 	
 	TraverseAiNodes(aiscene, parent_path.c_str(), aiscene->mRootNode,nullptr);
 
+	
+	
 	aiReleaseImport(aiscene);
 }

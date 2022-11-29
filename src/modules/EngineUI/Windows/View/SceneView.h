@@ -10,5 +10,9 @@ public:
 	void Start();
 	void Update();
 
+
+	// prolly shouldnt be there but f it
+	//Entity* entitySelected;
+
 	void CleanUp();
 };

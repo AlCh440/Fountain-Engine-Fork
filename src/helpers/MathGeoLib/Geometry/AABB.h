@@ -39,6 +39,9 @@ MATH_BEGIN_NAMESPACE
 class ALIGN16 AABB
 {
 public:
+	/// Added for research
+	void Draw();
+
 
 	/// Specifies the minimum extent of this AABB in the world space x, y and z axes.
 	vec minPoint;

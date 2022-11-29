@@ -22,6 +22,9 @@
     <Filter Include="Sources\Modules\EngineUI\DearImGUI">
       <UniqueIdentifier>{f204ff43-ab08-4e80-91af-6a5fc420b873}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sources\Tools\AABB">
+      <UniqueIdentifier>{8d103a5e-f890-4c89-b567-6592a0081b65}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Application.cpp" />
@@ -51,7 +54,6 @@
     <ClCompile Include="src\helpers\MathGeoLib\Algorithm\GJK.cpp" />
     <ClCompile Include="src\helpers\MathGeoLib\Algorithm\GJK2D.cpp" />
     <ClCompile Include="src\helpers\MathGeoLib\Algorithm\SAT.cpp" />
-    <ClCompile Include="src\helpers\MathGeoLib\Geometry\AABB.cpp" />
     <ClCompile Include="src\helpers\MathGeoLib\Geometry\Capsule.cpp" />
     <ClCompile Include="src\helpers\MathGeoLib\Geometry\Circle.cpp" />
     <ClCompile Include="src\helpers\MathGeoLib\Geometry\Circle2D.cpp" />
@@ -105,6 +107,9 @@
     <ClCompile Include="src\modules\ECS\ComponentsMove\CTransform.cpp" />
     <ClCompile Include="src\modules\FileSystem\Converters.cpp" />
     <ClCompile Include="src\modules\FileSystem\ModuleFS.cpp" />
+    <ClCompile Include="src\helpers\MathGeoLib\Geometry\AABB.cpp">
+      <Filter>Sources\Tools\AABB</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Application.h" />
@@ -141,7 +146,6 @@
     <ClInclude Include="src\helpers\MathGeoLib\Algorithm\GJK2D.h" />
     <ClInclude Include="src\helpers\MathGeoLib\Algorithm\SAT.h" />
     <ClInclude Include="src\helpers\MathGeoLib\emscripten\library_system.h" />
-    <ClInclude Include="src\helpers\MathGeoLib\Geometry\AABB.h" />
     <ClInclude Include="src\helpers\MathGeoLib\Geometry\AABB2D.h" />
     <ClInclude Include="src\helpers\MathGeoLib\Geometry\Capsule.h" />
     <ClInclude Include="src\helpers\MathGeoLib\Geometry\Circle.h" />
@@ -229,6 +233,12 @@
     <ClInclude Include="src\modules\EngineUI\Windows\Entities\EntityHierachy.h" />
     <ClInclude Include="src\modules\EngineUI\Windows\Inspector\ComponentInspector.h" />
     <ClInclude Include="src\modules\FileSystem\Converters.h" />
+    <ClInclude Include="src\helpers\MathGeoLib\Geometry\AABB.h">
+      <Filter>Sources\Tools\AABB</Filter>
+    </ClInclude>
+    <ClInclude Include="AABBComponent.h">
+      <Filter>Sources\Tools\AABB</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\helpers\MathGeoLib\Geometry\KDTree.inl" />

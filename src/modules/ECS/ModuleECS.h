@@ -8,6 +8,7 @@
 enum ComponentTypes {
 	CT_MeshRenderer,
 	CT_Transform,
+	CT_AABB,
 
 	CT_MAX
 };
@@ -22,7 +23,7 @@ struct ComponentID {
 struct Component {
 	ComponentID id;
 	bool active = true;
-
+	
 	virtual void Init() {};
 	virtual void Start() {};
 	virtual void PreUpdate(float dt) {};
