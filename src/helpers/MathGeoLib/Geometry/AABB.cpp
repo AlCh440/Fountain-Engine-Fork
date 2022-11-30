@@ -60,16 +60,18 @@ AABB::AABB(const vec &minPoint_, const vec &maxPoint_)
 
 void AABB::Draw()
 {
+	glColor3f(1, 0, 0);
 	LineSegment* drawSegment;
 	for (int i = 0; i <= 11; i++) {
 		drawSegment = &Edge(i);
 
 		glBegin(GL_LINES);
-		glColor3f(1,0, 0);
-		glVertex2f(drawSegment->a.x, drawSegment->a.y);
-		glVertex2f(drawSegment->b.x, drawSegment->b.y);
+		
+		glVertex3f(drawSegment->a.x, drawSegment->a.y, drawSegment->a.z);
+		glVertex3f(drawSegment->b.x, drawSegment->b.y, drawSegment->b.z);
 		glEnd();
 	}
+	glColor3f(1, 1, 1);
 }
 
 AABB::AABB(const OBB &obb)
