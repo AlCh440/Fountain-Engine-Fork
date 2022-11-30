@@ -7,7 +7,7 @@ void EntityHierarchyWindow::Start() {
 }
 
 void EntityHierarchyWindow::UpdateRMMenu() {
-   /* rm_menu.CheckToOpen();
+    rm_menu.CheckToOpen();
     if (ImGui::BeginPopup(rm_menu.container_name))
     {
         if (ImGui::MenuItem("New Entity"))
@@ -28,7 +28,7 @@ void EntityHierarchyWindow::UpdateRMMenu() {
             selected.clear();
         }
         ImGui::EndPopup();
-    }*/
+    }
 }
 
 static ImGuiTreeNodeFlags node_flags = ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_OpenOnDoubleClick | ImGuiTreeNodeFlags_SpanFullWidth;
@@ -63,7 +63,7 @@ void EntityHierarchyWindow::UpdateEntry(Entity* curr_e) {
 
 void EntityHierarchyWindow::Update() {
 	
-	/*ImGui::Begin(name.c_str(), &active);
+	ImGui::Begin(name.c_str(), &active);
     if (ImGui::IsWindowHovered() && ImGui::IsMouseClicked(0) && !CheckModifiers()) {
         selected.clear();
         if (inspector != nullptr) inspector->entity = nullptr;
@@ -73,7 +73,7 @@ void EntityHierarchyWindow::Update() {
 
     UpdateRMMenu();
 
-	ImGui::End();*/
+	ImGui::End();
 
     ImGui::Begin(name.c_str(), &active);
 
