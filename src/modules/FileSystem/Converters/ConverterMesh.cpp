@@ -1,5 +1,5 @@
 #include "../Converters.h"
-#include "AABBComponent.h"
+#include "src/helpers/AABBComponent.h"
 #include <src/modules/Render/RendererTypes.h>
 
 // Components for the exporters, not Converters
@@ -40,7 +40,7 @@ void ConvertAssimpMesh(const aiMesh* aimesh, NIMesh& mesh) {
 	
 	Entity* entityAux = App->ecs->AddEntity(UINT64_MAX);
 	
-	AABBComponent* component = entityAux->AddComponent<AABBComponent>();
+	C_AABB* component = entityAux->AddComponent<C_AABB>();
 	memcpy(entityAux->name, "aabb", sizeof(char) * 4);
 	AABB* aux = new AABB();
 	aux->SetFrom(mesh.vertices.data(), mesh.vertices.size());

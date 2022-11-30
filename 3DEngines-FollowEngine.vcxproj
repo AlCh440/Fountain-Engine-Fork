@@ -94,7 +94,7 @@
     <ClCompile Include="src\modules\Render\RenderTypesCreators.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AABBComponent.h" />
+    <ClInclude Include="C_AABB.h" />
     <ClInclude Include="src\Application.h" />
     <ClInclude Include="src\helpers\glmath.h" />
     <ClInclude Include="src\helpers\Globals.h" />

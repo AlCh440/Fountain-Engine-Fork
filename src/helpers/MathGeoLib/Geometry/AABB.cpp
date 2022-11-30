@@ -65,6 +65,7 @@ void AABB::Draw()
 		drawSegment = &Edge(i);
 
 		glBegin(GL_LINES);
+		glColor3f(1,0, 0);
 		glVertex2f(drawSegment->a.x, drawSegment->a.y);
 		glVertex2f(drawSegment->b.x, drawSegment->b.y);
 		glEnd();

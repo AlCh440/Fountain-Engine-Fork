@@ -236,7 +236,7 @@
     <ClInclude Include="src\helpers\MathGeoLib\Geometry\AABB.h">
       <Filter>Sources\Tools\AABB</Filter>
     </ClInclude>
-    <ClInclude Include="AABBComponent.h">
+    <ClInclude Include="C_AABB.h">
       <Filter>Sources\Tools\AABB</Filter>
     </ClInclude>
   </ItemGroup>
