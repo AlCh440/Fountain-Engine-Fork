@@ -96,6 +96,7 @@
   <ItemGroup>
     <ClInclude Include="C_AABB.h" />
     <ClInclude Include="src\Application.h" />
+    <ClInclude Include="src\helpers\C_AABB.h" />
     <ClInclude Include="src\helpers\glmath.h" />
     <ClInclude Include="src\helpers\Globals.h" />
     <ClInclude Include="src\helpers\JSON\parson.h" />

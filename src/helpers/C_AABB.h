@@ -22,4 +22,5 @@ struct C_AABB : public Component {
 		aabb->Draw();
 	};
 
+
 };

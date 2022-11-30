@@ -1,6 +1,8 @@
 #include "CS_Transform.h"
 #include <src/modules/EngineUI/DearImGUI/imgui.h>
 
+#include "src/helpers/C_AABB.h"
+
 static char headerid[64];
 static bool world_t = false;
 static Quat temp_quat;
@@ -17,6 +19,20 @@ void C_Transform::PropagateChanges() {
 	}
 }
 
+void C_Transform::NotifyBoundingBox()
+{
+	Entity* parent = id.parent;
+	
+	//C_AABB* child_t = parent->GetComponent<C_AABB>();
+	//if (child_t)
+	//	child_t->aabb->Transform(world_mat * local_mat);
+
+	for (Entity* child : parent->children) {
+		C_AABB* child_t = child->GetComponent<C_AABB>();
+	
+	}
+}
+
 void C_Transform::DrawInspector() {
 	bool changed = false;
 
@@ -28,6 +44,7 @@ void C_Transform::DrawInspector() {
 		sprintf(headerid, "RESET##llu", id.id);
 		if (ImGui::Button(headerid)) {
 			local_mat = float4x4::identity;
+			//NotifyBoundingBox();
 			PropagateChanges();
 		}
 		if (ImGui::RadioButton("World", world_t)) world_t = !world_t;
@@ -66,7 +83,7 @@ void C_Transform::DrawInspector() {
 			
 
 			local_mat = float4x4::FromTRS(prev_pos, prev_quat, prev_scale);
-
+			//NotifyBoundingBox();
 			PropagateChanges();
 		}
 	}

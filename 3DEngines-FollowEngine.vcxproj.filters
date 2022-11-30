@@ -239,6 +239,9 @@
     <ClInclude Include="C_AABB.h">
       <Filter>Sources\Tools\AABB</Filter>
     </ClInclude>
+    <ClInclude Include="src\helpers\C_AABB.h">
+      <Filter>Sources\Tools\AABB</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\helpers\MathGeoLib\Geometry\KDTree.inl" />

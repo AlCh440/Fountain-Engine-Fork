@@ -17,4 +17,6 @@ struct C_Transform : public Component {
 	void DrawInspector();
 
 	void PropagateChanges();
+
+	void NotifyBoundingBox();
 };

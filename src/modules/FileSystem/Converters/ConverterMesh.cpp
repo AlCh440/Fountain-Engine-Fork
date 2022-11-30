@@ -1,11 +1,11 @@
 #include "../Converters.h"
-#include "src/helpers/AABBComponent.h"
+#include "src/helpers/C_AABB.h"
 #include <src/modules/Render/RendererTypes.h>
 
 // Components for the exporters, not Converters
 #include <src/modules/ECS/ComponentsIncludeAll.h>
 
-void ConvertAssimpMesh(const aiMesh* aimesh, NIMesh& mesh) {
+void ConvertAssimpMesh(const aiMesh* aimesh, NIMesh& mesh, Entity* parent, Entity* GameObject) {
 	mesh.vertices.resize(aimesh->mNumVertices);
 	memcpy(mesh.vertices.data(), aimesh->mVertices, aimesh->mNumVertices * sizeof(float3));
 	
@@ -38,7 +38,7 @@ void ConvertAssimpMesh(const aiMesh* aimesh, NIMesh& mesh) {
 
 	
 	
-	Entity* entityAux = App->ecs->AddEntity(UINT64_MAX);
+	Entity* entityAux = App->ecs->AddEntity(GameObject->id);
 	
 	C_AABB* component = entityAux->AddComponent<C_AABB>();
 	memcpy(entityAux->name, "aabb", sizeof(char) * 4);

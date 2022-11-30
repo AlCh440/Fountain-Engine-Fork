@@ -73,9 +73,9 @@ void EntityHierarchyWindow::Update() {
 
     UpdateRMMenu();
 
-	ImGui::End();
 
-    ImGui::Begin(name.c_str(), &active);
+
+    //ImGui::Begin(name.c_str(), &active);
 
     ImGui::SetCursorPos(ImVec2(15, 32));
     ImGui::Text("GameObject options");

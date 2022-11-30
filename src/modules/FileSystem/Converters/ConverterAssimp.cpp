@@ -31,9 +31,9 @@ void InitializeTransform(C_Transform* ctrans, const aiMatrix4x4& mat) {
 	ctrans->valid_tree = false;
 }
 
-void TraverseAiNodes(const aiScene* scene, const char* parent_path, const aiNode* node, Entity* parent) {
+void TraverseAiNodes(const aiScene* scene, const char* parent_path, const aiNode* node, Entity* parent, Entity* GameObject) {
 	
-	Entity* get = App->ecs->AddEntity((parent!= nullptr) ? parent->id : UINT64_MAX);
+	Entity* get = App->ecs->AddEntity((parent!= nullptr) ? parent->id : GameObject->id);
 	uint32_t namesize = (node->mName.length > sizeof(get->name)) ? sizeof(get->name) : node->mName.length;
 	memcpy(get->name, node->mName.C_Str(), namesize);
 	// Transform and Mesh
@@ -43,7 +43,7 @@ void TraverseAiNodes(const aiScene* scene, const char* parent_path, const aiNode
 	for (int i = 0; i < node->mNumMeshes; ++i) {
 		C_MeshRenderer* cmesh = get->AddComponent<C_MeshRenderer>();
 		aiMesh* aimesh = scene->mMeshes[node->mMeshes[i]];
-		ConvertAssimpMesh(aimesh, cmesh->mesh_data);
+		ConvertAssimpMesh(aimesh, cmesh->mesh_data, parent, GameObject);
 		cmesh->mesh_use = cmesh->mesh_data.LoadToGPU();
 
 		ConvertAssimpMaterial(scene->mMaterials[aimesh->mMaterialIndex], parent_path, cmesh->mat_data);
@@ -56,10 +56,14 @@ void TraverseAiNodes(const aiScene* scene, const char* parent_path, const aiNode
 
 	
 	for (int i = 0; i < node->mNumChildren; ++i)
-		TraverseAiNodes(scene, parent_path, node->mChildren[i], get);
+		TraverseAiNodes(scene, parent_path, node->mChildren[i], get, GameObject);
 }
 
 void ConvertAssimpScene(const TempIfStream& file) {
+
+	Entity* gameObject = App->ecs->AddEntity(UINT64_MAX);
+	memcpy(gameObject->name, "GameObject", 10 * sizeof(char));
+
 	const PlainData& data = file.GetData();
 	const aiScene* aiscene = aiImportFileFromMemory(data.data, data.size, aiProcessPreset_TargetRealtime_MaxQuality | aiProcess_Triangulate, nullptr);
 	
@@ -67,7 +71,7 @@ void ConvertAssimpScene(const TempIfStream& file) {
 	size_t filename_len = strlen(filename);
 	std::string parent_path = file.path.substr(0, file.path.length() - filename_len);
 	
-	TraverseAiNodes(aiscene, parent_path.c_str(), aiscene->mRootNode,nullptr);
+	TraverseAiNodes(aiscene, parent_path.c_str(), aiscene->mRootNode,nullptr, gameObject);
 
 	
 	
