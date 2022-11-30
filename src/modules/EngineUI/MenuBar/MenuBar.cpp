@@ -81,7 +81,7 @@ void MenuBar::Update()
         }
         if (ImGui::MenuItem("Download latest"))
         {
-            ShellExecute(NULL, "open", "https://github.com/carlosarnau/NormalEngine/releases", NULL, NULL, SW_SHOWNORMAL);
+            ShellExecute(NULL, "open", "https://github.com/AlCh440/Fountain-Engine-Fork/releases", NULL, NULL, SW_SHOWNORMAL);
         }
         if (ImGui::MenuItem("Documentation"))
         {
