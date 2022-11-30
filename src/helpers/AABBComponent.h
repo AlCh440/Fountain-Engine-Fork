@@ -4,9 +4,9 @@
 //#include <src/helpers/MathGeoLib/MathGeoLib.h>
 #include <src/Application.h>
 
-struct AABBComponent : public Component {
+struct C_AABB : public Component {
 	constexpr static ComponentTypes type = CT_AABB;
-	AABBComponent() { id.ctype = CT_AABB; id.id = PCGRand(); }
+	C_AABB() { id.ctype = CT_AABB; id.id = PCGRand(); }
 
 	AABB* aabb;
 	
