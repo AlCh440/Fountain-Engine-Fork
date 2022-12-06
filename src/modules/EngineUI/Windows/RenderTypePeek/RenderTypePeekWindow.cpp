@@ -10,6 +10,13 @@ void RenderPeekWindow::Start()
 void RenderPeekWindow::Update()
 {
 	ImGui::Begin(name.c_str(), &active);
+
+	//ImGui::Begin(name.c_str(), &active);
+
+	ImGui::SetCursorPos(ImVec2(15, 32));
+	ImGui::Text("Game Assets");
+	ImGui::SetCursorPos(ImVec2(15, 60));
+	ImGui::Separator();
 	
 	if (ImGui::CollapsingHeader("Meshes")) {
 
