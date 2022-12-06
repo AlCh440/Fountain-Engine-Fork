@@ -17,11 +17,12 @@ public:
 
 	bool CleanUp();
 
+	//bool LoadFromPath(char* draggedFileDir);
 
 	const char* GetExecPath();
 };
 
 void TryLoad_WithParentPath(const char* path, const char* parent_path, TempIfStream& stream);
-
+//std::vector<std::string> modelExtensionsAccepted;
 std::vector<WatchedData> TryLoadFromDisk(const char* path, const char* parent_path = nullptr);
 bool WriteToDisk(const char* file_path, char* data, uint64_t size);

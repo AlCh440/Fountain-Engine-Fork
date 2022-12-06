@@ -110,6 +110,7 @@
     <ClCompile Include="src\helpers\MathGeoLib\Geometry\AABB.cpp">
       <Filter>Sources\Tools\AABB</Filter>
     </ClCompile>
+    <ClCompile Include="ImGuizmo.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Application.h" />
@@ -242,6 +243,7 @@
     <ClInclude Include="src\helpers\C_AABB.h">
       <Filter>Sources\Tools\AABB</Filter>
     </ClInclude>
+    <ClInclude Include="ImGuizmo.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\helpers\MathGeoLib\Geometry\KDTree.inl" />

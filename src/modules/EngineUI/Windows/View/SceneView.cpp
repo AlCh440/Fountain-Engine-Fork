@@ -7,6 +7,8 @@ void SceneView::Start() {
 	//App->renderer3D->LoadFromPath((char*)"Assets/Project_1/Assets/Models/baker_house.fbx");
 	fb.Create(App->window->w, App->window->h);
 	App->renderer3D->hijack_framebuffer = &fb;
+
+	
 }
 
 void SceneView::Update() {

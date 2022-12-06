@@ -16,6 +16,7 @@ Tools::Tools() : Module("editor_ui", true)
     //EngineUI_RegisterItem((UI_Item*)new DemoWindow());
     EngineUI_RegisterItem((UI_Item*)new EntityHierarchyWindow());
     EngineUI_RegisterItem((UI_Item*)new ComponentInspector());
+    
 }
 
 Tools::~Tools()
