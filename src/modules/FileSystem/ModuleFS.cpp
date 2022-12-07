@@ -99,3 +99,13 @@ std::vector<WatchedData> TryLoadFromDisk(const char* path, const char* parent_pa
 		
 	return ret;
 }
+
+std::vector<WatchedData> TryLoadFromDiskWithParent(const char* path, Entity* parent, const char* parent_path) {
+	std::vector<WatchedData> ret;
+	TempIfStream file(path);
+	if (file.GetData().size == 0) TryLoad_WithParentPath(path, parent_path, file);
+
+	TryConvertWithParent(parent, file, path);
+
+	return ret;
+}

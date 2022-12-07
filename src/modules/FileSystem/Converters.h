@@ -4,13 +4,16 @@
 // converts them to a format we want to use ideally
 // then saves them to disk, then asks the disk data to be loaded
 
-#include <src/modules/Module.h>
-#include <libs/assimp/scene.h>
+
+#include "../Module.h"
+#include "../../../libs/assimp/scene.h"
 #include "FSDataTypes.h"
-#include <src/modules/Render/RendererTypes.h>
-#include "src/modules/ECS/ModuleECS.h"
+#include "../Render/RendererTypes.h"
+#include "../ECS/ModuleECS.h"
 
 std::vector<WatchedData> TryConvert(const TempIfStream& file, const char* path = nullptr);
+//std::vector<WatchedData> TryConvertWithParent(Entity* parent, const TempIfStream& file, const char* path = nullptr);
+std::vector<WatchedData> TryConvertWithParent(Entity* parent, const TempIfStream& file, const char* path = nullptr);
 bool InitConverters();
 bool CleanUpConverters();
 
@@ -20,6 +23,7 @@ bool AssimpInit();
 bool AssimpCleanUp();
 
 void ConvertAssimpScene(const TempIfStream& file);
+void ConvertAssimpSceneWithParent(Entity* parent, const TempIfStream& file);
 // Meshes
 void ConvertAssimpMesh(const aiMesh* aimesh, NIMesh& mesh, Entity* parent, Entity* GameObject = NULL);
 

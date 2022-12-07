@@ -5,6 +5,7 @@
 #include <libs\SDL\include\SDL_opengl.h>
 #include <gl/GL.h>
 #include <gl/GLU.h>
+#include "../FileSystem/ModuleFS.h"
 
 #pragma comment (lib, "glew/lib/Win32/glew32.lib")
 #pragma comment (lib, "glu32.lib")    /* link OpenGL Utility lib     */
@@ -136,18 +137,20 @@ bool ModuleRenderer3D::Init()
 	InitPrimitives();
 
 
-	// trying things
+	// creating cameras
 
 	Entity* entityAux = App->ecs->AddEntity(UINT64_MAX);
 	memcpy(entityAux->name, "CameraObject", 12 * sizeof(char));
-	
+	entityAux->isGameObject = true;
 	C_camera* component = entityAux->AddComponent<C_camera>();
+
+
 	C_Transform* component_02 = entityAux->AddComponent<C_Transform>();
 	cameraView = entityAux;
 
 	Entity* entitygamecamera = App->ecs->AddEntity(UINT64_MAX);
 	memcpy(entitygamecamera->name, "CameraGame", 10 * sizeof(char));
-
+	entitygamecamera->isGameObject = true;   
 	C_camera* gamecompononent = entitygamecamera->AddComponent<C_camera>();
 	gamecompononent->SetPlayerOn();
 	memcpy(entitygamecamera->name, "CameraGame", 10 * sizeof(char));

@@ -19,4 +19,5 @@ struct C_Transform : public Component {
 	void PropagateChanges();
 
 	void NotifyBoundingBox();
+	void NotifyCamera();
 };

@@ -27,4 +27,5 @@ struct C_AABB : public Component {
 		center += pos;
 		aabb->SetFromCenterAndSize(center, aabb->Size());
 	};
+
 };

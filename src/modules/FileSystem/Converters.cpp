@@ -20,6 +20,17 @@ std::vector<WatchedData> TryConvert(const TempIfStream& file, const char* path) 
 	return ret;
 }
 
+std::vector<WatchedData> TryConvertWithParent(Entity* parent, const TempIfStream& file, const char* path)
+{
+	std::vector<WatchedData> ret;
+	const char* ext = strrchr(path, '.');
+
+	uint32_t tex_type = 0;
+	if (strcmp(ext, ".fbx") == 0 || strcmp(ext, ".FBX") == 0)
+		ConvertAssimpSceneWithParent(parent, file); // Assimp Scene never saved to memory
+
+	return ret;
+}
 
 bool InitConverters() {
 	stream = aiGetPredefinedLogStream(aiDefaultLogStream_DEBUGGER, nullptr);

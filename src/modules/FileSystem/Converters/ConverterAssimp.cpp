@@ -62,12 +62,12 @@ void TraverseAiNodes(const aiScene* scene, const char* parent_path, const aiNode
 }
 
 void ConvertAssimpScene(const TempIfStream& file) {
+	const PlainData& data = file.GetData();
+	const aiScene* aiscene = aiImportFileFromMemory(data.data, data.size, aiProcessPreset_TargetRealtime_MaxQuality | aiProcess_Triangulate, nullptr);
 
 	Entity* gameObject = App->ecs->AddEntity(UINT64_MAX);
 	memcpy(gameObject->name, "GameObject", 10 * sizeof(char));
 	gameObject->isGameObject = true;
-	const PlainData& data = file.GetData();
-	const aiScene* aiscene = aiImportFileFromMemory(data.data, data.size, aiProcessPreset_TargetRealtime_MaxQuality | aiProcess_Triangulate, nullptr);
 	
 	const char* filename = FileName(file.path.c_str());
 	size_t filename_len = strlen(filename);
@@ -77,5 +77,25 @@ void ConvertAssimpScene(const TempIfStream& file) {
 
 	
 	
+	aiReleaseImport(aiscene);
+}
+
+void ConvertAssimpSceneWithParent(Entity* parent, const TempIfStream& file)
+{
+	const PlainData& data = file.GetData();
+	const aiScene* aiscene = aiImportFileFromMemory(data.data, data.size, aiProcessPreset_TargetRealtime_MaxQuality | aiProcess_Triangulate, nullptr);
+
+	Entity* gameObject = App->ecs->AddEntity(parent->id);
+	memcpy(gameObject->name, "GameObject", 10 * sizeof(char));
+	gameObject->isGameObject = true;
+
+	const char* filename = FileName(file.path.c_str());
+	size_t filename_len = strlen(filename);
+	std::string parent_path = file.path.substr(0, file.path.length() - filename_len);
+
+	TraverseAiNodes(aiscene, parent_path.c_str(), aiscene->mRootNode, nullptr, gameObject);
+
+
+
 	aiReleaseImport(aiscene);
 }

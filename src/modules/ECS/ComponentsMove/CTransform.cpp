@@ -14,8 +14,10 @@ void C_Transform::PropagateChanges() {
 	Entity* parent = id.parent;
 	for (Entity* child : parent->children) {
 		C_Transform* child_t = child->GetComponent<C_Transform>();
-		child_t->world_mat = world_mat * local_mat;
-		child_t->PropagateChanges();
+		if (child_t != NULL) {
+			child_t->world_mat = world_mat * local_mat;
+			child_t->PropagateChanges();
+		}
 	}
 }
 
@@ -26,25 +28,69 @@ void C_Transform::NotifyBoundingBox()
 	//C_AABB* child_t = parent->GetComponent<C_AABB>();
 	//if (child_t)
 	//	child_t->aabb->Transform(world_mat * local_mat);
+	if (gameObject != NULL)
+	{
+		for (Entity* child : gameObject->children) {
+			if (C_AABB* child_t = child->GetComponent<C_AABB>())
+			{
+				child_t->UpdateBoundingBox(temp_pos, prev_rot, prev_scale);
+			}
 
-	for (Entity* child : gameObject->children) {
-		if (C_AABB* child_t = child->GetComponent<C_AABB>())
-		{
-			child_t->UpdateBoundingBox(temp_pos, prev_rot, prev_scale);
 		}
-	
+	}
+}
+
+void C_Transform::NotifyCamera()
+{
+	Entity* gameObject = GetGameObject(id.parent);
+
+	//C_AABB* child_t = parent->GetComponent<C_AABB>();
+	//if (child_t)
+	//	child_t->aabb->Transform(world_mat * local_mat);
+	if (gameObject != NULL)
+	{
+		for (Entity* child : gameObject->children) {
+			if (C_camera* child_t = child->GetComponent<C_camera>())
+			{
+				vec3 mov(temp_pos.x, temp_pos.y, temp_pos.z);
+
+				child_t->Move(mov);
+			}
+
+		}
+
+		if (C_camera* child_t = gameObject->GetComponent<C_camera>())
+		{
+			vec3 mov(temp_pos.x, temp_pos.y, temp_pos.z);
+
+			child_t->Move(mov);
+		}
+	}
+
+	if (C_camera* child_t = id.parent->GetComponent<C_camera>())
+	{
+		vec3 mov(temp_pos.x, temp_pos.y, temp_pos.z);
+
+		child_t->Move(mov);
 	}
 }
 
 Entity* C_Transform::GetGameObject(Entity* child) {
 	Entity* parent = child->parent;
-
-	if (parent->isGameObject = true)
+	if (parent != NULL)
 	{
-		return parent;
-	}
+		if (parent->isGameObject == true)
+		{
+			return parent;
+		}
 
-	return GetGameObject(parent);
+		return GetGameObject(parent);
+	}
+	else
+	{
+		return NULL;
+	}
+	
 	
 }
 void C_Transform::DrawInspector() {
@@ -100,6 +146,7 @@ void C_Transform::DrawInspector() {
 			
 			PropagateChanges();
 			NotifyBoundingBox();
+			NotifyCamera();
 		}
 	}
 }

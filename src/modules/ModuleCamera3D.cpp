@@ -12,7 +12,7 @@ C_camera::C_camera(bool start_enabled)
 	Y = vec3(0.0f, 1.0f, 0.0f);
 	Z = vec3(0.0f, 0.0f, 1.0f);
 
-	Position = vec3(0.0f, 0.0f, 5.0f);
+	Position = vec3(0.0f, 0.0f, 0.0f);
 	Reference = vec3(0.0f, 0.0f, 0.0f);
 }
 
@@ -50,6 +50,8 @@ void C_camera::Update(float dt)
 	if (playerOn) 
 	{ 
 		if (App->renderer3D->gameViewOn) {
+
+
 			if (App->input->GetKey(SDL_SCANCODE_R) == KEY_REPEAT) newPos.y += speed;
 			if (App->input->GetKey(SDL_SCANCODE_F) == KEY_REPEAT) newPos.y -= speed;
 
@@ -97,6 +99,10 @@ void C_camera::Update(float dt)
 				}
 
 				Position = Reference + Z * length(Position);
+			}
+
+			if (App->input->GetMouseButton(SDL_BUTTON_LEFT) == KEY_REPEAT) {
+				
 			}
 		}
 	}
@@ -187,7 +193,7 @@ void C_camera::Look(const vec3 &Position, const vec3 &Reference, bool RotateArou
 void C_camera::LookAt( const vec3 &Spot)
 {
 	Reference = Spot;
-
+	
 	Z = normalize(Position - Reference);
 	X = normalize(cross(vec3(0.0f, 1.0f, 0.0f), Z));
 	Y = cross(Z, X);
