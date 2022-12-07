@@ -22,10 +22,10 @@
     <Filter Include="Sources\Modules\EngineUI\DearImGUI">
       <UniqueIdentifier>{f204ff43-ab08-4e80-91af-6a5fc420b873}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Sources\Tools\AABB">
+    <Filter Include="Sources\AABB">
       <UniqueIdentifier>{8d103a5e-f890-4c89-b567-6592a0081b65}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Sources\Tools\camera">
+    <Filter Include="Sources\camera">
       <UniqueIdentifier>{168b726c-e9ef-4430-9224-97621c5029ac}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -111,7 +111,7 @@
     <ClCompile Include="src\modules\FileSystem\Converters.cpp" />
     <ClCompile Include="src\modules\FileSystem\ModuleFS.cpp" />
     <ClCompile Include="src\helpers\MathGeoLib\Geometry\AABB.cpp">
-      <Filter>Sources\Tools\AABB</Filter>
+      <Filter>Sources\AABB</Filter>
     </ClCompile>
     <ClCompile Include="ImGuizmo.cpp" />
   </ItemGroup>
@@ -238,13 +238,13 @@
     <ClInclude Include="src\modules\EngineUI\Windows\Inspector\ComponentInspector.h" />
     <ClInclude Include="src\modules\FileSystem\Converters.h" />
     <ClInclude Include="src\helpers\MathGeoLib\Geometry\AABB.h">
-      <Filter>Sources\Tools\AABB</Filter>
+      <Filter>Sources\AABB</Filter>
     </ClInclude>
     <ClInclude Include="C_AABB.h">
-      <Filter>Sources\Tools\AABB</Filter>
+      <Filter>Sources\AABB</Filter>
     </ClInclude>
     <ClInclude Include="src\helpers\C_AABB.h">
-      <Filter>Sources\Tools\AABB</Filter>
+      <Filter>Sources\AABB</Filter>
     </ClInclude>
     <ClInclude Include="ImGuizmo.h" />
   </ItemGroup>

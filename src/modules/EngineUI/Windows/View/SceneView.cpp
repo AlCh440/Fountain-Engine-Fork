@@ -52,6 +52,16 @@ void SceneView::Update() {
 		ImGui::SetTooltip("Action Stop");
 	}
 
+	if (ImGui::Button("gameView", ImVec2(50, 20)))
+	{
+		App->renderer3D->gameViewOn = true;
+	}
+
+	if (ImGui::Button("cameraView", ImVec2(100, 20)))
+	{
+		App->renderer3D->gameViewOn = false;
+	}
+
 	ImGui::End();
 
 
@@ -61,3 +71,4 @@ void SceneView::Update() {
 void SceneView::CleanUp() {
 	fb.Destroy();
 }
+

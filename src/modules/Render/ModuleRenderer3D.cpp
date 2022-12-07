@@ -137,18 +137,30 @@ bool ModuleRenderer3D::Init()
 
 
 	// trying things
+
 	Entity* entityAux = App->ecs->AddEntity(UINT64_MAX);
 	memcpy(entityAux->name, "CameraObject", 12 * sizeof(char));
 	
 	C_camera* component = entityAux->AddComponent<C_camera>();
-	
-	
-	
-	
 	C_Transform* component_02 = entityAux->AddComponent<C_Transform>();
-	camera_id = entityAux->id;
-	camera_try = entityAux;
-	//camera_try_01;
+	cameraView = entityAux;
+
+	Entity* entitygamecamera = App->ecs->AddEntity(UINT64_MAX);
+	memcpy(entitygamecamera->name, "CameraGame", 10 * sizeof(char));
+
+	C_camera* gamecompononent = entitygamecamera->AddComponent<C_camera>();
+	gamecompononent->SetPlayerOn();
+	memcpy(entitygamecamera->name, "CameraGame", 10 * sizeof(char));
+	C_Transform* gamecomponent_ = entitygamecamera->AddComponent<C_Transform>();
+
+	gameView = entitygamecamera;
+	//Entity* entityAux01 = App->ecs->AddEntity(UINT64_MAX);
+	//memcpy(entityAux01->name, "CameraGame", 10 * sizeof(char));
+	//
+	//C_camera* gamecomponent = entityAux->AddComponent<C_camera>();
+	//C_Transform* gamecomponent_02 = entityAux->AddComponent<C_Transform>();
+	//gameView = entityAux01;
+	////camera_try_01;
 	return ret;
 }
 
@@ -162,8 +174,13 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 
 	glMatrixMode(GL_MODELVIEW);
 
-	glLoadMatrixf(camera_try->GetComponent<C_camera>()->GetViewMatrix());
-
+	if (gameViewOn) {
+		glLoadMatrixf(gameView->GetComponent<C_camera>()->GetViewMatrix());
+	}
+	else
+	{
+		glLoadMatrixf(cameraView->GetComponent<C_camera>()->GetViewMatrix());
+	}
 	return UPDATE_CONTINUE;
 }
 
@@ -207,4 +224,5 @@ void ModuleRenderer3D::OnResize(int width, int height)
 		hijack_framebuffer->Destroy();
 		hijack_framebuffer->Create(width, height);
 	}
+
 }

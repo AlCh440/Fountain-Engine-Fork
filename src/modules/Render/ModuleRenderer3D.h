@@ -52,8 +52,10 @@ public:
 
 	GPUFBO* hijack_framebuffer = nullptr;
 
-	uint64_t camera_id;
-	Entity* camera_try;
+	bool gameViewOn = true;
+
+	Entity* cameraView;
+	Entity* gameView;
 	//ModuleCamera3D* camera_try_01;
 
 };
