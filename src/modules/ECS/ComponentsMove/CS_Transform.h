@@ -13,7 +13,7 @@ struct C_Transform : public Component {
 	float4x4 local_mat = float4x4::identity;
 	
 	bool valid_tree = false;
-
+	Entity* GetGameObject(Entity* child);
 	void DrawInspector();
 
 	void PropagateChanges();

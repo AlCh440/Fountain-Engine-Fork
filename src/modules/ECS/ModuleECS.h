@@ -44,6 +44,7 @@ struct Entity {
 	Entity* parent = nullptr;
 	uint64_t par_id = UINT64_MAX;
 	char name[32] = "";
+	bool isGameObject = false;
 	// If you want to cash them, create them per entity
 
 	std::vector<Entity*> children;

@@ -21,18 +21,32 @@ void C_Transform::PropagateChanges() {
 
 void C_Transform::NotifyBoundingBox()
 {
-	Entity* parent = id.parent;
+	Entity* gameObject = GetGameObject(id.parent);
 	
 	//C_AABB* child_t = parent->GetComponent<C_AABB>();
 	//if (child_t)
 	//	child_t->aabb->Transform(world_mat * local_mat);
 
-	for (Entity* child : parent->children) {
-		C_AABB* child_t = child->GetComponent<C_AABB>();
+	for (Entity* child : gameObject->children) {
+		if (C_AABB* child_t = child->GetComponent<C_AABB>())
+		{
+			child_t->UpdateBoundingBox(temp_pos, prev_rot, prev_scale);
+		}
 	
 	}
 }
 
+Entity* C_Transform::GetGameObject(Entity* child) {
+	Entity* parent = child->parent;
+
+	if (parent->isGameObject = true)
+	{
+		return parent;
+	}
+
+	return GetGameObject(parent);
+	
+}
 void C_Transform::DrawInspector() {
 	bool changed = false;
 
@@ -83,8 +97,9 @@ void C_Transform::DrawInspector() {
 			
 
 			local_mat = float4x4::FromTRS(prev_pos, prev_quat, prev_scale);
-			//NotifyBoundingBox();
+			
 			PropagateChanges();
+			NotifyBoundingBox();
 		}
 	}
 }

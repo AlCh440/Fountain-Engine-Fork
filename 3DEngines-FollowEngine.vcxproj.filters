@@ -240,9 +240,6 @@
     <ClInclude Include="src\helpers\MathGeoLib\Geometry\AABB.h">
       <Filter>Sources\AABB</Filter>
     </ClInclude>
-    <ClInclude Include="C_AABB.h">
-      <Filter>Sources\AABB</Filter>
-    </ClInclude>
     <ClInclude Include="src\helpers\C_AABB.h">
       <Filter>Sources\AABB</Filter>
     </ClInclude>

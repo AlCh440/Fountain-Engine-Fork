@@ -65,7 +65,7 @@ void ConvertAssimpScene(const TempIfStream& file) {
 
 	Entity* gameObject = App->ecs->AddEntity(UINT64_MAX);
 	memcpy(gameObject->name, "GameObject", 10 * sizeof(char));
-
+	gameObject->isGameObject = true;
 	const PlainData& data = file.GetData();
 	const aiScene* aiscene = aiImportFileFromMemory(data.data, data.size, aiProcessPreset_TargetRealtime_MaxQuality | aiProcess_Triangulate, nullptr);
 	

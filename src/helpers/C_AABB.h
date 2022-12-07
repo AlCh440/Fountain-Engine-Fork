@@ -22,5 +22,9 @@ struct C_AABB : public Component {
 		aabb->Draw();
 	};
 
-
+	void UpdateBoundingBox(float3 pos, float3 rot, float3 scale) {
+		float3 center = aabb->CenterPoint();
+		center += pos;
+		aabb->SetFromCenterAndSize(center, aabb->Size());
+	};
 };

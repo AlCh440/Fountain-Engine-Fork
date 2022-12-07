@@ -74,6 +74,8 @@ void AABB::Draw()
 	glColor3f(1, 1, 1);
 }
 
+
+
 AABB::AABB(const OBB &obb)
 {
 	SetFrom(obb);

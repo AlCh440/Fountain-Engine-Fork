@@ -95,7 +95,6 @@
     <ClCompile Include="src\modules\Render\RenderTypesCreators.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="C_AABB.h" />
     <ClInclude Include="ImGuizmo.h" />
     <ClInclude Include="src\Application.h" />
     <ClInclude Include="src\helpers\C_AABB.h" />
