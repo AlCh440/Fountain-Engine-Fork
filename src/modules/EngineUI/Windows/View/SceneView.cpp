@@ -52,7 +52,7 @@ void SceneView::Update() {
 		ImGui::SetTooltip("Action Stop");
 	}
 
-	if (ImGui::Button("gameView", ImVec2(50, 20)))
+	if (ImGui::Button("gameView", ImVec2(100, 20)))
 	{
 		App->renderer3D->gameViewOn = true;
 	}

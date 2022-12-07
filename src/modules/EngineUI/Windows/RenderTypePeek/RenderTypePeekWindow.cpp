@@ -1,6 +1,7 @@
 #include "RenderTypePeekWindow.h"
-#include <src/Application.h>
-#include <glew/include/GL/glew.h>
+#include "../../../../Application.h"
+#include "../../../../../libs/glew/include/GL/glew.h"
+#include <filesystem>
 
 
 void RenderPeekWindow::Start()
@@ -40,7 +41,7 @@ void RenderPeekWindow::Update()
 	ImGui::Image((ImTextureID)checkers_textureID, ImVec2(400,400));
 
 	ImGui::End();*/
-
+	
 	if (m_CurrentDirectory != std::filesystem::path(s_AssetPath))
 	{
 		ImGui::SetCursorPos(ImVec2(95, 30));
