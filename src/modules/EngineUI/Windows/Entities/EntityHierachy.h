@@ -3,6 +3,7 @@
 #include "../../ui_item.h"
 #include "../../ModuleEngineUI.h"
 #include "../Inspector/ComponentInspector.h"
+#include "../../ImGuizmo/ImGuizmo.h"
 
 
 struct EntityHierarchyWindow : public UI_Item {
@@ -23,5 +24,6 @@ struct EntityHierarchyWindow : public UI_Item {
 	std::vector<uint64_t> selected;
 	bool IsSelected(uint64_t eid) { for (auto v : selected) if (eid == v) return true; return false; }
 	void UpdateEntry(Entity* entity);
+
 
 };
