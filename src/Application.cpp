@@ -8,7 +8,7 @@ Application::Application()
 	window = new ModuleWindow();
 	input = new ModuleInput();
 	renderer3D = new ModuleRenderer3D();
-	camera = new ModuleCamera3D();
+	//camera = new ModuleCamera3D();
 	fs = new ModuleFS();
 	ecs = new ModuleECS();
 	engine_ui = new Tools();
@@ -19,7 +19,7 @@ Application::Application()
 
 	// Main Modules
 	AddModule(window);
-	AddModule(camera);
+	//AddModule(camera);
 	AddModule(input);
 	
 	// Scenes

@@ -10,7 +10,7 @@
 #include <src/modules/EngineUI/ModuleEngineUI.h>
 #include <src/modules/FileSystem/ModuleFS.h>
 #include <src/modules/ECS/ModuleECS.h>
-
+#include "modules/Render/ModuleRenderer3D.h"
 #include<list>
 #include<vector>
 
@@ -20,7 +20,6 @@ public:
 	ModuleWindow* window;
 	ModuleInput* input;
 	ModuleRenderer3D* renderer3D;
-	ModuleCamera3D* camera;
 	Tools* engine_ui;
 	ModuleFS* fs;
 	ModuleECS* ecs; // = &_ecs;

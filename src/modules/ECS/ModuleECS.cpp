@@ -22,6 +22,7 @@ bool ModuleECS::Init()
 bool ModuleECS::Start()
 {
 
+
 	return true;
 }
 

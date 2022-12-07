@@ -9,7 +9,7 @@ enum ComponentTypes {
 	CT_MeshRenderer,
 	CT_Transform,
 	CT_AABB,
-
+	CT_CAMERA,
 	CT_MAX
 };
 

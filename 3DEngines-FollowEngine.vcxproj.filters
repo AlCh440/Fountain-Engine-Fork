@@ -25,6 +25,9 @@
     <Filter Include="Sources\Tools\AABB">
       <UniqueIdentifier>{8d103a5e-f890-4c89-b567-6592a0081b65}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sources\Tools\camera">
+      <UniqueIdentifier>{168b726c-e9ef-4430-9224-97621c5029ac}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Application.cpp" />

@@ -3,31 +3,34 @@
 #include <src/helpers/Globals.h>
 #include <src/helpers/glmath.h>
 #include <src/helpers/MathGeoLib/MathGeoLib.h>
+#include "ECS/ComponentsIncludeAll.h"
 
-class ModuleCamera3D : public Module
+
+struct C_camera : public Component
 {
-public:
-	ModuleCamera3D(bool start_enabled = true);
-	~ModuleCamera3D();
+	constexpr static ComponentTypes type = CT_CAMERA;
 
-	bool Start();
-	update_status Update(float dt);
-	bool CleanUp();
+
+	C_camera(bool start_enabled = true);
+	~C_camera();
+
+	void Start() override;
+	void Update(float dt) override ;
+	void CleanUp() override;
 
 	void Look(const vec3 &Position, const vec3 &Reference, bool RotateAroundReference = false);
 	void LookAt(const vec3 &Spot);
 	void Move(const vec3 &Movement);
 	float* GetViewMatrix();
 
-private:
+
 
 	void CalculateViewMatrix();
 
-public:
 	
 	vec3 X, Y, Z, Position, Reference;
 
-private:
+
 
 	mat4x4 ViewMatrix, ViewMatrixInverse;
 };

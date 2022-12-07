@@ -8,6 +8,8 @@
 #include "RendererTypes.h"
 #include "Primitives/Primitives.h"
 #include <SDL/include/SDL.h>
+#include "../ECS/ModuleECS.h"
+
 
 #define MAX_LIGHTS 8
 
@@ -49,4 +51,9 @@ public:
 	std::unordered_map<uint64_t, GPUMat> materials;
 
 	GPUFBO* hijack_framebuffer = nullptr;
+
+	uint64_t camera_id;
+	Entity* camera_try;
+	//ModuleCamera3D* camera_try_01;
+
 };

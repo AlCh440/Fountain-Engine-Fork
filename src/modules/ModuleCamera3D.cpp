@@ -2,8 +2,10 @@
 #include <src/Application.h>
 #include "ModuleCamera3D.h"
 
-ModuleCamera3D::ModuleCamera3D(bool start_enabled) : Module("renderer")
+C_camera::C_camera(bool start_enabled) 
 {
+	id.ctype = CT_CAMERA; id.id = PCGRand();
+
 	CalculateViewMatrix();
 
 	X = vec3(1.0f, 0.0f, 0.0f);
@@ -14,28 +16,28 @@ ModuleCamera3D::ModuleCamera3D(bool start_enabled) : Module("renderer")
 	Reference = vec3(0.0f, 0.0f, 0.0f);
 }
 
-ModuleCamera3D::~ModuleCamera3D()
+C_camera::~C_camera()
 {}
 
 // -----------------------------------------------------------------
-bool ModuleCamera3D::Start()
+void C_camera::Start()
 {
 	PLOG("Setting up the camera");
 	bool ret = true;
 
-	return ret;
+	
 }
 
 // -----------------------------------------------------------------
-bool ModuleCamera3D::CleanUp()
+void C_camera::CleanUp()
 {
 	PLOG("Cleaning camera");
 
-	return true;
+	
 }
 
 // -----------------------------------------------------------------
-update_status ModuleCamera3D::Update(float dt)
+void C_camera::Update(float dt)
 {
 	// Implement a debug camera with keys and mouse
 	// Now we can make this movememnt frame rate independant!
@@ -98,11 +100,10 @@ update_status ModuleCamera3D::Update(float dt)
 	// Recalculate matrix -------------
 	CalculateViewMatrix();
 
-	return UPDATE_CONTINUE;
 }
 
 // -----------------------------------------------------------------
-void ModuleCamera3D::Look(const vec3 &Position, const vec3 &Reference, bool RotateAroundReference)
+void C_camera::Look(const vec3 &Position, const vec3 &Reference, bool RotateAroundReference)
 {
 	this->Position = Position;
 	this->Reference = Reference;
@@ -121,7 +122,7 @@ void ModuleCamera3D::Look(const vec3 &Position, const vec3 &Reference, bool Rota
 }
 
 // -----------------------------------------------------------------
-void ModuleCamera3D::LookAt( const vec3 &Spot)
+void C_camera::LookAt( const vec3 &Spot)
 {
 	Reference = Spot;
 
@@ -134,7 +135,7 @@ void ModuleCamera3D::LookAt( const vec3 &Spot)
 
 
 // -----------------------------------------------------------------
-void ModuleCamera3D::Move(const vec3 &Movement)
+void C_camera::Move(const vec3 &Movement)
 {
 	Position += Movement;
 	Reference += Movement;
@@ -143,13 +144,13 @@ void ModuleCamera3D::Move(const vec3 &Movement)
 }
 
 // -----------------------------------------------------------------
-float* ModuleCamera3D::GetViewMatrix()
+float* C_camera::GetViewMatrix()
 {
 	return &ViewMatrix;
 }
 
 // -----------------------------------------------------------------
-void ModuleCamera3D::CalculateViewMatrix()
+void C_camera::CalculateViewMatrix()
 {
 	ViewMatrix = mat4x4(X.x, Y.x, Z.x, 0.0f, X.y, Y.y, Z.y, 0.0f, X.z, Y.z, Z.z, 0.0f, -dot(X, Position), -dot(Y, Position), -dot(Z, Position), 1.0f);
 	ViewMatrixInverse = inverse(ViewMatrix);

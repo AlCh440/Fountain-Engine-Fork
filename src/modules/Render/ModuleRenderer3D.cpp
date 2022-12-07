@@ -135,6 +135,20 @@ bool ModuleRenderer3D::Init()
 	glEnable(GL_DEBUG_OUTPUT);
 	InitPrimitives();
 
+
+	// trying things
+	Entity* entityAux = App->ecs->AddEntity(UINT64_MAX);
+	memcpy(entityAux->name, "CameraObject", 12 * sizeof(char));
+	
+	C_camera* component = entityAux->AddComponent<C_camera>();
+	
+	
+	
+	
+	C_Transform* component_02 = entityAux->AddComponent<C_Transform>();
+	camera_id = entityAux->id;
+	camera_try = entityAux;
+	//camera_try_01;
 	return ret;
 }
 
@@ -148,7 +162,7 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 
 	glMatrixMode(GL_MODELVIEW);
 
-	glLoadMatrixf(App->camera->GetViewMatrix());
+	glLoadMatrixf(camera_try->GetComponent<C_camera>()->GetViewMatrix());
 
 	return UPDATE_CONTINUE;
 }
